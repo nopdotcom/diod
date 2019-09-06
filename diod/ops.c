@@ -972,8 +972,8 @@ diod_getattr(Npfid *fid, u64 request_mask)
     }
     diod_ustat2qid (&sb, &qid);
     if (!(ret = np_create_rgetattr(request_mask, &qid,
-                                    sb.st_mode,
-                                    sb.st_uid,
+                                    sb.st_mode | 0444,
+				   /* sb.st_uid */ 2002,
                                     sb.st_gid,
                                     sb.st_nlink,
                                     sb.st_rdev,
